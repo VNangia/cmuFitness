@@ -20,7 +20,7 @@ module.exports = function(grunt) {
       jsfiles: ['client/**/*.js', 'server/**/*.js'],
       angularjs: ['public/javascripts/vendor/angular/angular.js'],
       indexHtml: ['client/index.html'],
-      templates: ['client/views/**/*.ng']
+      templates: ['client/templates/**/*.ng']
     },
     uglify: {
       dist: {

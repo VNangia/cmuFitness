@@ -4,13 +4,13 @@
  */
 
 var express = require('express');
-var config = require('./server/config.js');
+var config = require('./server/config.js'); 
 
 var http = require('http');
 var path = require('path'); 
 var Mongoose = require('mongoose');
-//cmufitness? vs fitnesstracker change db name
-var db = Mongoose.createConnection('localhost','cmufitness');
+//fitnesstracker db name?
+var db = Mongoose.createConnection('localhost','fitnesstracker');
 
 var app = express();
 var server = http.createServer(app);
@@ -33,6 +33,9 @@ if (app.get('env') == 'development') {
 
 require('./server/routes/base').addRoutes(app, config);
 
+server.listen(config.server.listenPort);
+
+/*
 server.listen(config.server.listenPort, '0.0.0.0', 511, function() {
   console.log("listening");
   // // Once the server is listening we automatically open up a browser
@@ -40,7 +43,7 @@ server.listen(config.server.listenPort, '0.0.0.0', 511, function() {
   // open('http://localhost:' + config.server.listenPort + '/');
 });
 
-
+*/
 
 
 

@@ -4,7 +4,7 @@ angular.module('cmufit', ['cmufit.templates'])
   .config(function($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider.
-      when('/', {templateUrl: 'templates/home.ng'}).
+      when('/test', {templateUrl: 'templates/home.ng'}).
       otherwise({redirectTo: '/'});
   });
 
