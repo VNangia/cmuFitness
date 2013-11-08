@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <html lang="en" ng-app="cmufit">
 <head>
-  <script type="text/javascript" src="/static/angular.js"></script>
-  <script type="text/javascript" src="/static/<%= grunt.config.get('pkg.name') %>.js"></script>
+  <script src="/dist/angular.js">
+  </script>
+  <script src="/dist/<%= grunt.config.get('pkg.name') %>.js">
+  </script>
 </head>
-
 <body>
   <div ng-view>
     hi

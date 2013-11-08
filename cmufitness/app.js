@@ -23,7 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public'))); // ??
+// __dirname refers to current path
+app.use(express.static(path.join(__dirname, 'public'))); // don't actually need this i think
 
 // development only
 if (app.get('env') == 'development') {
