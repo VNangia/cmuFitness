@@ -16,15 +16,15 @@ var app = express();
 var server = http.createServer(app);
 
 // set up all environments
+// order in which middleware is invoked is important, since they are invoked sequentially
 app.set('port', process.env.PORT || 3000);
 app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
-// __dirname refers to current path
-app.use(express.static(path.join(__dirname, 'public'))); // don't actually need this i think
+app.use(express.logger('dev')); //register logger
+app.use(express.json());  //to allow json on req/res
+app.use(express.urlencoded()); //to allow url encoding
+app.use(express.methodOverride()); //to allow PUT and DELETE support
+app.use(app.router); 
+app.use(express.static(path.join(__dirname, 'dist'))); //the directory where static files are located
 
 // development only
 if (app.get('env') == 'development') {
@@ -34,17 +34,11 @@ if (app.get('env') == 'development') {
 
 require('./server/routes/base').addRoutes(app, config);
 
-server.listen(config.server.listenPort);
-
-/*
 server.listen(config.server.listenPort, '0.0.0.0', 511, function() {
   console.log("listening");
-  // // Once the server is listening we automatically open up a browser
-  //var open = require('open');
-  // open('http://localhost:' + config.server.listenPort + '/');
 });
 
-*/
+
 
 
 

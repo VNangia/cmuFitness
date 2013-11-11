@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
     src: {
       jsfiles: ['client/**/*.js'],
+      jstemplates: ['<%= distdir %>/templates.js'],
       angularjs: ['public/javascripts/vendor/angular/angular.min.js'],
       indexHtml: ['client/index.html'],
       templates: ['client/templates/**/*.ng']
@@ -34,7 +35,7 @@ module.exports = function(grunt) {
         options: {
           banner: "<%= banner %>"
         },
-        src:['<%= src.jsfiles %>'],
+        src:['<%= src.jsfiles %>', '<%= src.jstemplates %>'],
         dest:'<%= distdir %>/<%= pkg.name %>.js'
       }, 
       index: {

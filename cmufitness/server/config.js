@@ -17,7 +17,6 @@ module.exports = {
     // __dirname is the path of the current file
     // equivalent to cd .., cd dist
     // The folder that contains the application files (note that the files are in a different repository) - relative to this file
-    //staticUrl: '/static',   // The base url from which we serve static files (such as js, css and images) 
   }
 
 };
