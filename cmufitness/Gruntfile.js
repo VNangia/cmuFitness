@@ -20,6 +20,7 @@ module.exports = function(grunt) {
       jsfiles: ['client/**/*.js'],
       jstemplates: ['<%= distdir %>/templates.js'],
       angularjs: ['public/javascripts/vendor/angular/angular.min.js'],
+      angularUI: ['public/javascripts/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js'],
       indexHtml: ['client/index.html'],
       templates: ['client/templates/**/*.ng']
     },
@@ -52,11 +53,11 @@ module.exports = function(grunt) {
       mongo: {
         src:['vendor/mongolab/*.js'],
         dest: '<%= distdir %>/mongolab.js'
-      },
-      bootstrap: {
-        src:['vendor/angular-ui/bootstrap/*.js'],
-        dest: '<%= distdir %>/bootstrap.js'
       }, */
+      bootstrap: {
+        src:['<%= src.angularUI %>'],
+        dest: '<%= distdir %>/bootstrap.js'
+      }, 
     },
     html2js: {
       templates: {

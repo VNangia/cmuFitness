@@ -1,3 +1,12 @@
-<input type="text">
-<input type="text">
-Hey!
+<div>
+  <div class="home-signup">
+    <h2> Awesome! </h2>
+    <button ng-click="$location.path('/register')"> Sign me up </button>
+  </div>
+  <div>
+    <h2> Already On board? Sign in! </h2>
+    <input type="text" ng-model="user.username" placeholder="Username">
+    <input type="password" ng-model="user.password" placeholder="Password">
+    <button ng-click="login(user)"> Login </button>
+  </div>
+</div>

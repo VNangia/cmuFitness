@@ -3,8 +3,13 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var config = require('./server/config.js'); 
+var express = require('express'),
+    mongo = require('mongodb'),
+    mongoose = require('mongoose');
+
+var config = require('./server/config.js');
+var xsrf = require('./server/auth/xsrf.js');
+var protectJSON = require('./server/auth/protectJSON.js');
 
 var http = require('http');
 var path = require('path'); 
@@ -15,16 +20,45 @@ var db = Mongoose.createConnection('localhost','fitnesstracker');
 var app = express();
 var server = http.createServer(app);
 
+app.use(protectJSON);
 // set up all environments
 // order in which middleware is invoked is important, since they are invoked sequentially
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || config.server.listenPort);
 app.use(express.favicon());
-app.use(express.logger('dev')); //register logger
+app.use(express.logger('dev')); //Log requests to the console
 app.use(express.json());  //to allow json on req/res
 app.use(express.urlencoded()); //to allow url encoding
 app.use(express.methodOverride()); //to allow PUT and DELETE support
 app.use(app.router); 
-app.use(express.static(path.join(__dirname, 'dist'))); //the directory where static files are located
+//the directory where static files are located
+app.use(express.static(path.join(__dirname, 'dist'))); 
+                          
+// Extract the data from the body of the request - this is needed by the LocalStrategy authenticate method
+app.use(express.bodyParser());    
+// Hash cookies with this secret
+app.use(express.cookieParser(config.server.cookieSecret));  
+// Store the session in the (secret) cookie
+//app.use(express.cookieSession());  
+app.use(express.session({ secret: 'ahsdjfhiwehfuiahdkf' })); 
+
+//var connectionURI = process.env.MONGOLAB_URI ||
+  //  "mongodb://localhost:27017/cmufit";                        
+
+
+//===========================
+//  init database
+//===========================
+mongoose.connect('mongodb://localhost:27017/cmufit');
+var database = mongoose.connection;
+database.on('error', console.error.bind(console, 'connection error:'));
+database.once('open', function() {
+    // yay!
+    initializeRoutes();
+    app.listen(3000);
+    console.log("Created server on port: ");
+});
+
+
 
 // development only
 if (app.get('env') == 'development') {
@@ -32,11 +66,13 @@ if (app.get('env') == 'development') {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 }
 
-require('./server/routes/base').addRoutes(app, config);
+function initializeRoutes() {
+  require('./server/routes/base.js').addRoutes(app, config);
+  require('./server/auth/auth.js').addRoutes(app);
+}
 
-server.listen(config.server.listenPort, '0.0.0.0', 511, function() {
-  console.log("listening");
-});
+
+
 
 
 
