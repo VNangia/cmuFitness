@@ -1,5 +1,5 @@
 angular.module('cmufit.login', [])
-.controller('LoginController', function ($scope, $http, $location) {
+.controller('AuthController', function ($scope, $http, $location) {
     $scope.user = { 'username': '', 'password': '', 'email': ''};
 
 
