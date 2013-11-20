@@ -1,3 +1,5 @@
-hey you're on the fucking dashboard.
-
-SWEET
+<div>
+  hey you're on the fucking dashboard.
+  SWEET
+  <a href="/home"> Logout </a>
+</div>  

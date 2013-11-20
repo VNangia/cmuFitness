@@ -1,4 +1,4 @@
-angular.module('cmufit.login', [])
+angular.module('cmufit.auth', [])
 .controller('AuthController', function ($scope, $http, $location) {
     $scope.user = { 'username': '', 'password': '', 'email': ''};
 
@@ -8,6 +8,7 @@ angular.module('cmufit.login', [])
         window.console.log("logged in!");
         window.console.log(data);
         $location.path('/index');
+        $scope.clearForm_();
         }).error(function(data) {
         window.console.log(data);
       });
@@ -18,16 +19,21 @@ angular.module('cmufit.login', [])
       $http.post('/register', user).success(function(data) {
         window.console.log("registered");
         window.console.log(data);
-        $scope.clearForm();
+        $scope.clearForm_();
         }).error(function(data) {
         window.console.log(data);
       });
     };
 
-    $scope.clearForm = function() {
+    $scope.clearForm_ = function() {
       $scope.user.username = '';
       $scope.user.password = '';
       $scope.user.email = '';
+    };
+
+    $scope.go = function (newPath) {
+      window.console.log("change path");
+      $location.path(newPath);
     };
 
 });

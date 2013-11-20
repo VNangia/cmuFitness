@@ -1,7 +1,7 @@
 <div>
   <div class="home-signup">
     <h2> Awesome! </h2>
-    <button ng-click="$location.path('/register')"> Sign me up </button>
+    <button ng-click="go('/register')"> Sign me up </button>
   </div>
   <div>
     <h2> Already On board? Sign in! </h2>
