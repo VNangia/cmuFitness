@@ -38,11 +38,10 @@ app.use(express.bodyParser());
 // Hash cookies with this secret, cookieParser must be configured before session
 app.use(express.cookieParser(config.server.cookieSecret));  
 // Store the session in the (secret) cookie
-//app.use(express.cookieSession());  
-app.use(express.session(config.server.sessionSecret)); 
+app.use(express.cookieSession({secret: config.server.sessionSecret}));  
 
 //var connectionURI = process.env.MONGOLAB_URI ||
-  //  "mongodb://localhost:27017/cmufit";                        
+//  "mongodb://localhost:27017/cmufit";                        
 
 
 //===========================
