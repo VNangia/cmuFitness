@@ -29,17 +29,18 @@ app.use(express.logger('dev')); //Log requests to the console
 app.use(express.json());  //to allow json on req/res
 app.use(express.urlencoded()); //to allow url encoding
 app.use(express.methodOverride()); //to allow PUT and DELETE support
-app.use(app.router); 
 //the directory where static files are located
-app.use(express.static(path.join(__dirname, 'dist'))); 
-                          
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'client/css')));  
+                        
+/* should be placed in this specific order */                     
 // Extract the data from the body of the request - this is needed by the LocalStrategy authenticate method
 app.use(express.bodyParser());    
 // Hash cookies with this secret, cookieParser must be configured before session
 app.use(express.cookieParser(config.server.cookieSecret));  
 // Store the session in the (secret) cookie
-app.use(express.cookieSession({secret: config.server.sessionSecret}));  
-
+app.use(express.session({secret: config.server.sessionSecret})); 
+app.use(app.router);  
 //var connectionURI = process.env.MONGOLAB_URI ||
 //  "mongodb://localhost:27017/cmufit";                        
 

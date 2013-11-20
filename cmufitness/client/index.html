@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="cmufit">
 <head>
+  <link rel="stylesheet/less" type="text/css" href="home.less">
+  <link rel="stylesheet" type="text/css" href="reset.css">
+  <script type="text/javascript" src="less.js"></script>
   <script type="text/javascript" src="angular.js"></script>
   <script type="text/javascript" src="bootstrap.js"></script>
   <script type="text/javascript" src="<%= grunt.config.get('pkg.name') %>.js">
   </script>
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
-  <h1> CMU Fitness Challenge 2014 </h1>
+<body class="cf-body">
+  <h1 class="cf-header"> CMU FITNESS CHALLENGE 2014 </h1>
   <div ng-view>
   </div>
 </body>

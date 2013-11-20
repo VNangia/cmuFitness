@@ -1,5 +1,5 @@
 <div>
-  <div class="home-signup">
+  <div class="cf-signup">
     <h2> Awesome! </h2>
     <button ng-click="go('/register')"> Sign me up </button>
   </div>

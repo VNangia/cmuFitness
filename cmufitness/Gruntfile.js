@@ -21,8 +21,9 @@ module.exports = function(grunt) {
       jstemplates: ['<%= distdir %>/templates.js'],
       angularjs: ['public/javascripts/vendor/angular/angular.min.js'],
       angularUI: ['public/javascripts/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js'],
+      less: ['public/javascripts/vendor/less.min.js'],
       indexHtml: ['client/index.html'],
-      templates: ['client/templates/**/*.ng']
+      templates: ['client/templates/**/*.ng'],
     },
     uglify: {
 /*
@@ -49,11 +50,11 @@ module.exports = function(grunt) {
       angular: {
         src:['<%= src.angularjs %>'],
         dest: '<%= distdir %>/angular.js'
-      }, /*
-      mongo: {
-        src:['vendor/mongolab/*.js'],
-        dest: '<%= distdir %>/mongolab.js'
-      }, */
+      }, 
+      less: {
+        src:['<%= src.less %>'],
+        dest: '<%= distdir %>/less.js'
+      }, 
       bootstrap: {
         src:['<%= src.angularUI %>'],
         dest: '<%= distdir %>/bootstrap.js'

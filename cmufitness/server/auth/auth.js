@@ -1,6 +1,6 @@
 var UserAuthAction = require('./UserAuthAction.js'),
     UserAuthService = require('./UserAuthService.js'),
-    UserModel = require('../userModel.js');
+    UserModel = require('../models/userModel.js');
 
 exports.addRoutes = function(app) {
 
@@ -27,7 +27,8 @@ exports.addRoutes = function(app) {
     userAuthAction.register(request, response, function(err, result){
       if (err) {
         response.send(err);
-      } else {
+      } 
+      else {
         response.send(result);
       }
     });
@@ -37,4 +38,4 @@ exports.addRoutes = function(app) {
 
 
 
-// Retrieve the current user
+

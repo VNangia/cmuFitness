@@ -32,7 +32,6 @@ angular.module('cmufit.auth', [])
     };
 
     $scope.go = function (newPath) {
-      window.console.log("change path");
       $location.path(newPath);
     };
 
