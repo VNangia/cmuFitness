@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var WorkoutLog = Schema ({
-	_user : { type: Number, ref: 'UserSchema' },
+	user : [{ type: Schema.Types.ObjectId, ref: 'User' }],
 	weightLifting: [{duration: Number, date: Date, default: Date.now }],
 	tennis: [{duration: Number, date: Date, default: Date.now }],
 	basketball: [{duration: Number, date: Date, default: Date.now }],
