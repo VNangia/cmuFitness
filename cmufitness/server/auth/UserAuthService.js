@@ -6,8 +6,8 @@ var mongoose = require('mongoose');
 var passwordTools = require('./passwordTools.js');
 
 
-function UserAuthService(UserSchema) {
-  this.User = mongoose.model('User', UserSchema);
+function UserAuthService(UserModel) {
+  this.User = UserModel;
 }
 
 UserAuthService.prototype.getUserAccount = function(username, password, done) {
@@ -27,7 +27,7 @@ UserAuthService.prototype.getUserAccount = function(username, password, done) {
   });
 }
 
-
+/***** FIX DUPLICATE USER CREATION *******/
 UserAuthService.prototype.createNewUser = function(username, password, email, done){
     var newUser = new this.User({ 
             username: username, 

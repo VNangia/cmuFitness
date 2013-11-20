@@ -10,5 +10,5 @@ var UserSchema = new Schema({
 
 UserSchema.set('autoIndex', false);
 
-module.exports = UserSchema;
+module.exports = mongoose.model('User', UserSchema);
 
