@@ -31,7 +31,8 @@ app.use(express.urlencoded()); //to allow url encoding
 app.use(express.methodOverride()); //to allow PUT and DELETE support
 //the directory where static files are located
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, 'client/css')));  
+app.use(express.static(path.join(__dirname, 'client/css')));
+app.use(express.static(path.join(__dirname, 'public/images')));   
                         
 /* should be placed in this specific order */                     
 // Extract the data from the body of the request - this is needed by the LocalStrategy authenticate method
