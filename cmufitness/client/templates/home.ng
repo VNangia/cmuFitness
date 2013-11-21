@@ -1,12 +1,11 @@
-<div>
-  <div class="cf-signup">
-    <h2> Awesome! </h2>
-    <button ng-click="go('/register')"> Sign me up </button>
-  </div>
-  <div>
-    <h2> Already On board? Sign in! </h2>
+<div class="cf-auth">
+  <div class="cf-login">
     <input type="text" ng-model="user.username" placeholder="Username">
     <input type="password" ng-model="user.password" placeholder="Password">
     <button ng-click="login(user)"> Login </button>
+  </div>
+  <div class="cf-or-text"> _____ or _____ </div>
+  <div class="cf-signup">
+    <button ng-click="go('/register')"> Sign me up </button>
   </div>
 </div>
